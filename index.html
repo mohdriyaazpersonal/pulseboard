@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#17283d" />
+    <meta
+      name="description"
+      content="Explore your CSV data with interactive filters, charts, and statistics. Private, in-browser analytics."
+    />
+    <title>Pulseboard — Find your signal</title>
+    <link rel="stylesheet" href="base.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to dashboard</a>
+    <aside class="sidebar">
+      <a class="brand" href="./"
+        ><span class="brand-icon">▥</span> pulseboard<span class="brand-dot"
+          >.</span
+        ></a
+      >
+      <div class="workspace">
+        <div class="avatar">R</div>
+        <div>Retail workspace<small>Your personal data studio</small></div>
+      </div>
+      <span class="nav-label">WORKSPACE</span
+      ><a class="nav-item active" href="#main"
+        ><span>◫</span> Overview <span class="nav-dot"></span></a
+      ><a class="nav-item" href="#explorer"><span>▦</span> Data explorer</a
+      ><a class="nav-item" href="#import-panel"
+        ><span>↥</span> Import a dataset</a
+      >
+      <div class="side-note">
+        <span class="privacy-icon">⌑</span>
+        <h3>Your data stays yours.</h3>
+        <p>
+          Files are processed in this browser. No account, uploads, or server
+          required.
+        </p>
+        <span class="pill">Local analytics</span>
+      </div>
+      <div class="sidebar-footer">PULSEBOARD STUDIO <span>v1.0</span></div>
+    </aside>
+    <main id="main">
+      <header class="topbar">
+        <div class="breadcrumbs">
+          Workspace <span>/</span> <strong>Overview</strong>
+        </div>
+        <span class="status"><i></i> Runs in your browser</span>
+      </header>
+      <div class="page">
+        <section class="page-heading">
+          <div>
+            <div class="eyebrow">A little clarity goes a long way</div>
+            <h1>Find your signal.</h1>
+            <p class="muted">
+              Turn everyday data into your next good decision.
+            </p>
+          </div>
+          <div class="row wrap">
+            <button id="demo-button">↺ Load demo</button
+            ><label class="button primary upload-button" for="csv-file"
+              >↥ Import CSV</label
+            ><input
+              class="sr-only"
+              id="csv-file"
+              type="file"
+              accept=".csv,text/csv"
+            />
+          </div>
+        </section>
+        <section id="import-panel" class="dataset-banner">
+          <div class="row">
+            <span class="dataset-icon">▦</span>
+            <div>
+              <strong id="dataset-name">September retail snapshot</strong>
+              <div id="dataset-meta" class="muted">
+                Synthetic demo data · ready to explore
+              </div>
+            </div>
+          </div>
+          <span class="pill" id="dataset-badge">Demo dataset</span>
+        </section>
+        <section class="panel filters">
+          <label>Group by<select id="dimension"></select></label
+          ><label>Measure<select id="metric"></select></label
+          ><label>Filter column<select id="category-column"></select></label
+          ><label>Category<select id="category"></select></label
+          ><label>Date column<select id="date-column"></select></label
+          ><label>From<input id="from" type="date" /></label
+          ><label>To<input id="to" type="date" /></label
+          ><button id="clear-filters" class="ghost">Reset filters</button>
+          <p id="filter-message" class="filter-message" role="status"></p>
+        </section>
+        <section
+          class="stats"
+          id="stats"
+          aria-label="Summary statistics"
+        ></section>
+        <section class="charts">
+          <article class="panel primary-chart">
+            <div class="row spread wrap">
+              <div>
+                <h2 id="chart-title">Revenue by category</h2>
+                <p class="muted chart-subtitle" id="chart-subtitle"></p>
+              </div>
+              <div class="chart-switch" aria-label="Chart style">
+                <button id="bar-button" aria-pressed="true">Bars</button
+                ><button id="line-button" aria-pressed="false">Line</button>
+              </div>
+            </div>
+            <div id="chart" class="chart"></div>
+            <p id="chart-summary" class="chart-summary"></p>
+          </article>
+          <article class="panel breakdown">
+            <div class="row spread">
+              <h2>At a glance</h2>
+              <span class="pill">Top 5</span>
+            </div>
+            <p class="muted">Where your selected measure adds up.</p>
+            <div id="breakdown"></div>
+            <div class="insight" id="insight"></div>
+          </article>
+        </section>
+        <section id="explorer" class="panel explorer">
+          <div class="row spread wrap">
+            <div>
+              <h2>Behind the numbers</h2>
+              <p class="muted" id="table-count"></p>
+            </div>
+            <div class="row wrap">
+              <input
+                id="search"
+                type="search"
+                placeholder="Search every column…"
+                aria-label="Search dataset"
+              /><button id="export-button">↓ Export filtered CSV</button>
+            </div>
+          </div>
+          <div class="table-scroll" id="table"></div>
+          <div class="row spread pagination">
+            <span class="muted" id="page-label"></span>
+            <div class="row">
+              <button id="previous">← Previous</button
+              ><button id="next">Next →</button>
+            </div>
+          </div>
+        </section>
+        <footer class="row spread wrap">
+          <span>Made for curious minds. Built to keep your data private.</span
+          ><span>CSV · up to 10,000 rows · 5 MB max</span>
+        </footer>
+      </div>
+    </main>
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
